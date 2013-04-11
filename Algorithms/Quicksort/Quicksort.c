@@ -13,14 +13,17 @@ By Chunting
 
 
 #include <stdio.h>
+#define GET_ARRAY_LEN(arr,len){len=(sizeof(arr)/sizeof(arr[0]));}
 int arr[]={14,10,11,5,6,15,0,15,16,14,0,8,17,15,7,1,18,7};
 /*Swap: exchange the values of v[k] and v[j] */
 inline void swap(int v[], int k,int j)
 {
-	int temp;
-	temp=v[k];
-	v[k]=v[j];
-	v[j]=temp;
+	if(v[k]!=v[j]){
+		int temp;
+		temp=v[k];
+		v[k]=v[j];
+		v[j]=temp;
+	}
 }
 void quicksort(int v[],int left, int right)
 {
@@ -37,6 +40,7 @@ void quicksort(int v[],int left, int right)
 			swap(v,last++,j);
 		}
 	}
+	printf("last: %d \tleft: %d \t right: %d\n",last,left,right);
 	/*small,small... key, large, large...*/
 	quicksort(v,left, last-1);
 	quicksort(v,last, right);
@@ -47,12 +51,15 @@ int getsizeof(int v[])
 }
 int main()
 {
-	int j;
-	quicksort(arr,0,18);
-	for(j=0;j<18;j++)
+	int j,len;
+	GET_ARRAY_LEN(arr,len);
+	quicksort(arr,0,len-1);
+	for(j=0;j<len;j++)
 	{
 		printf("%d ",arr[j]);
 	}
+
+	printf("\n length: %d\n",len);
 }
 
 
