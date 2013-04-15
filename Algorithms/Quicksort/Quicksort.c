@@ -45,10 +45,6 @@ void quicksort(int v[],int left, int right)
 	quicksort(v,left, last-1);
 	quicksort(v,last, right);
 }
-int getsizeof(int v[])
-{
-	return 0;
-}
 int main()
 {
 	int j,len;
